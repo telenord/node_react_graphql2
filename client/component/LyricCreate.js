@@ -21,11 +21,12 @@ class LyricCreate extends Component {
       }
     })
       .then(() => {
-        this.setState({content: ''});
+
       })
       .catch(err => {
         console.log(err);
       });
+    this.setState({content: ''});
   }
 
   render() {
@@ -39,9 +40,7 @@ class LyricCreate extends Component {
             type='text'
             name='title'
             value={this.state.content}
-            onChange={event => {
-              this.setState({content: event.target.value})
-            }}
+            onChange={event => {this.setState({content: event.target.value})}}
           />
         </form>
       </div>
@@ -56,6 +55,7 @@ mutation AddLyricToSong($content: String, $songId: ID){
      lyrics {
       id
       content
+      likes
      }
   }
 }`;
