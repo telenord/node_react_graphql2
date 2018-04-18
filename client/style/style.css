@@ -1,3 +1,12 @@
 .collection-item .material-icons{
     cursor: pointer;
 }
+
+.vote-box{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+.vote-box .material-icons{
+    margin-right: 5px;
+}

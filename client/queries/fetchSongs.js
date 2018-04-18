@@ -4,7 +4,7 @@ export default gql`
 {
   songs{
     id
-    title
+    title    
   }
 }
 `;

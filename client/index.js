@@ -10,14 +10,16 @@ import SongCreate from './component/SongCreate';
 import SongDetail from './component/SongDetail';
 
 
-const client = new ApolloClient({});
+const client = new ApolloClient({
+  dataIdFromObject: o => o.id
+});
 
 const Root = () => {
   return (
     <ApolloProvider client={client}>
       <Router history={hashHistory}>
         <Route path='/' component={App}>
-          <IndexRoute component={SongList} />
+          <IndexRoute component={SongList}/>
           <Route path='/songs/new' component={SongCreate}/>
           <Route path='/songs/:id' component={SongDetail}/>
         </Route>

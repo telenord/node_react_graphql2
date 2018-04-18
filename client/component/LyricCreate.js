@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { Link, hashHistory } from 'react-router';
-import query from '../queries/fetchSongs';
 
 class LyricCreate extends Component {
   constructor(props) {
@@ -20,13 +18,12 @@ class LyricCreate extends Component {
       variables: {
         content: this.state.content,
         songId: this.props.songId
-      },
-      refetchQueries: [{query: query}]
+      }
     })
-      .then(()=>{
+      .then(() => {
         this.setState({content: ''});
       })
-      .catch(err=>{
+      .catch(err => {
         console.log(err);
       });
   }
@@ -42,7 +39,9 @@ class LyricCreate extends Component {
             type='text'
             name='title'
             value={this.state.content}
-            onChange={event => {this.setState({content: event.target.value})}}
+            onChange={event => {
+              this.setState({content: event.target.value})
+            }}
           />
         </form>
       </div>
@@ -53,7 +52,11 @@ class LyricCreate extends Component {
 const mutation = gql`
 mutation AddLyricToSong($content: String, $songId: ID){
   addLyricToSong(content: $content, songId:$songId){
-     title
+     id
+     lyrics {
+      id
+      content
+     }
   }
 }`;
 export default graphql(mutation)(LyricCreate);
